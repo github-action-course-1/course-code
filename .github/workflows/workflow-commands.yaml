@@ -17,9 +17,11 @@ jobs:
               run: |
                 echo "::group:: My group title"
                 echo "inside group"
+                echo "::notice title=error title,file=app.js,line=2,endLine=3,col=5,endColumn=7::Missing semicolon"
+                echo "::warning title=error title,file=app.js,line=2,endLine=3,col=5,endColumn=7::Missing semicolon"
                 echo "::endgroup::"
             - name: Masking a value
-              run: echo "::mask::Secret String"
+              run: echo "::add-mask::Secret String"
             - name: Echo secret
               run: echo "Secret String"
   
