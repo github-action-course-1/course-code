@@ -1,4 +1,4 @@
-name: Pr-Comment
+name: Pr-coms
 on:
   issues:
     types: [opened]
