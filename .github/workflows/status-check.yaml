@@ -8,9 +8,10 @@ jobs:
         - name: step1
           run: sleep 10
         - name: step2
+          id: step-2
           run: exit 1
         - name: runs on failure
-          if: failure()
+          if: failure() && steps.step-2.conclusion=='failure'
           run: echo 'runs only on failure'
         - name: runs on success
           if: success()
