@@ -13,7 +13,6 @@ jobs:
           echo ${{'this is string'}}
           echo ${{true == false}}
       - name: Dump Contexts
-        steps:
           run: |
             echo '${{ toJson(github)}}'
             echo '${{ toJson(job)}}'
