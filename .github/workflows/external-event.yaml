@@ -6,4 +6,4 @@ jobs:
   echo-a-string:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "repo dispatc"
+      - run: echo ${{github.event.client_payload.name}}
