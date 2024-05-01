@@ -1,5 +1,5 @@
 name: Context-and-Expressions
-on: [push,pull_request, issues, workflow_dispatch]
+on: [push,pull_request,issues, workflow_dispatch]
 
 
 jobs:
@@ -19,4 +19,3 @@ jobs:
             echo '${{ toJson(job)}}'
             echo '${{ toJson(steps)}}'
             echo '${{toJson(secrets)}}'
-            
