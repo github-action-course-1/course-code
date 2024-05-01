@@ -13,8 +13,8 @@ jobs:
           echo ${{'this is string'}}
           echo ${{true == false}}
       - name: Dump Contexts
-          run: |
-            echo '${{ toJson(github)}}'
-            echo '${{ toJson(job)}}'
-            echo '${{ toJson(steps)}}'
-            echo '${{toJson(secrets)}}'
+        run: |
+          echo '${{ toJson(github)}}'
+          echo '${{ toJson(job)}}'
+          echo '${{ toJson(steps)}}'
+          echo '${{toJson(secrets)}}'
