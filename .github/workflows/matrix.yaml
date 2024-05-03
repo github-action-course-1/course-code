@@ -12,8 +12,8 @@ jobs:
         fail-fast: false
     runs-on: ${{matrix.os}}
     steps: 
-        - run: node -v
+        - run: bode -v
         - uses: actions/setup-node@v3
           with:  
             node-version: 13
-        - run: node -v
+        - run: echo ${{matrix}}
