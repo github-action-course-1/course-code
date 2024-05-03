@@ -5,14 +5,15 @@ jobs:
   node-matrix:
     continue-on-error: true
     strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest]
-        node-version: [12, 14, 16]
-      # max-parallel: 3
-      fail-fast: false
+        matrix:
+            os: [ubuntu-latest, windows-latest]
+            node-version: [12, 14, 16]
+        # max-parallel: 3
+        fail-fast: false
     runs-on: ${{matrix.os}}
-    steps:
-      - run: node -v
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 13
+    steps: 
+        - run: node -v
+        - uses: actions/setup-node@v3
+          with:  
+            node-version: 13
+        - run: echo ${{toJson(matrix)}}
