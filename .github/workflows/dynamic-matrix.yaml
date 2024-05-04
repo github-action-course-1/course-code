@@ -19,19 +19,18 @@ jobs:
         id: matrix-arrays
         with: 
           script: |
-            return "{
-              os: context.payload.inputs['os'].split(','),
-              'node-version': context.payload.inputs['node-version'].split(',')
-            }"
+            const os = context.payload.inputs['os'].split(',');
+            const nodeVersion = context.payload.inputs['node-version'].split(',');
+            return { os, 'node-version': nodeVersion };
           result-encoding: json
       - run: echo '${{steps.matrix-arrays.outputs.result}}'
-      - run: echo "step-output=value" >> $GITHUB_OUTPUT
+      - run: echo "step-output=value" >> $GITHUB_ENV
         id: step-1
-      - run: echo "step-output=value 2" >> $GITHUB_OUTPUT
+      - run: echo "step-output=value 2" >> $GITHUB_ENV
         id: step-2
       - run: |
-          echo '${{steps.step-1.outputs.step-output}}'
-          echo '${{steps.step-2.outputs.step-output}}'
+          echo "${{ steps.step-1.outputs.step-output }}"
+          echo "${{ steps.step-2.outputs.step-output }}"
       
       
 
