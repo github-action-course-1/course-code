@@ -13,5 +13,5 @@ jobs:
     uses: github-action-course-1/workflows/.github/workflows/trigger.yaml@main
     with:
       name: ${{github.event.inputs.name}}
-      secrets:
-        access-token: ${{secrets.ACCESS_TOKEN}}
+    secrets:
+      access-token: ${{secrets.ACCESS_TOKEN}}
