@@ -21,4 +21,4 @@ jobs:
     runs-on: ubuntu-latest
     needs: calling-a-reusable-in-same-repo
     steps:
-      - run: echo '${{needs.calling-a-reusable-in-same-repo.outputs.date}}'
+      - run: echo ${{needs.calling-a-reusable-in-same-repo.outputs.date}}
