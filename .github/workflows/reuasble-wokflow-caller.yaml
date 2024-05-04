@@ -1,0 +1,17 @@
+name: Reusable workflow caller
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "Workflow name"
+        required: true
+        type: string
+        default: "kartik"
+
+jobs:
+  calling-a-reuable-wf:
+    uses: github-action-course-1/workflows/.github/workflows/trigger.yaml@main
+    with:
+      name: ${{github.event.inputs.name}}
+      secrets:
+        access-token: ${{secrets.ACCESS_TOKEN}}
