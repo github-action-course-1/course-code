@@ -15,4 +15,4 @@ jobs:
       - name: Generate Date
         id: date-step
         run: echo "date=$(date)" >> $GITHUB_OUTPUT
-      - run: echo "date=$(date)" 
+       
