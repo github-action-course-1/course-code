@@ -16,10 +16,9 @@ jobs:
     secrets:
       access-token: ${{secrets.ACCESS_TOKEN}}
   calling-a-reusable-in-same-repo:
-    uses:  
-    github-action-course-1/workflows/.github/workflows/using-reusable-workflow.yaml@main
+    uses: github-action-course-1/course-code/.github/workflows/using-reusable-workflow.yaml@main
   using-reusable-workflow:
     runs-on: ubuntu-latest
-    needs: calling-a-reuable-in-same-repo
+    needs: calling-a-reusable-in-same-repo
     steps:
       - run: echo ${{needs.outputs.date}}
