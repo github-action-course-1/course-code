@@ -14,12 +14,14 @@ jobs:
 
   prepare-matrix:
     runs-on: ubuntu-latest
+    outputs: 
+      matrix-arrays: ${{steps.matrix-arrays.outputs.result}}
     steps:
       - uses: actions/github-script@v6
         id: matrix-arrays
         with: 
           script: |
-            const os = inputs['os'].split(',');
+            const os = context.payload.inputs['os'].split(',');
             const nodeVersion = context.payload.inputs['node-version'].split(',');
             return { os, 'node-version': nodeVersion };
           result-encoding: json
@@ -36,10 +38,11 @@ jobs:
 
   node-matrix:
     continue-on-error: true
+    needs: prepare-matrix
     strategy:
         matrix:
-            os: [ubuntu-latest, windows-latest]
-            node-version: [12, 14, 16] 
+            os: ${{fromJson(needs.prepare-matrix.outputs.matrix-arrays).os}}
+            node-version: ${{fromJson(needs.prepare-matrix.outputs.matrix-arrays).node-version}}
         fail-fast: false
     runs-on: ${{matrix.os}}
     steps: 
