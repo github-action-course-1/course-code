@@ -9,9 +9,17 @@ on:
         default: "kartik"
 
 jobs:
-  calling-a-reuable-wf:
+  calling-a-reusable-wf:
     uses: github-action-course-1/workflows/.github/workflows/trigger.yaml@main
     with:
       name: ${{github.event.inputs.name}}
     secrets:
       access-token: ${{secrets.ACCESS_TOKEN}}
+  calling-a-reusable-in-same-repo:
+    uses:  
+    ./.github/workflows/using-reusable-workflow.yaml
+  using-reusable-workflow:
+    runs-on: ubuntu-latest
+    needs: calling-a-reuable-in-same-repo
+    steps:
+      - run: echo ${{needs.outputs.date}}
