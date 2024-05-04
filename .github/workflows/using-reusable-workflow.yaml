@@ -12,5 +12,6 @@ jobs:
     outputs:
         date: ${{steps.date-step.outputs.date}}
     steps:
-      - run: echo "date=$(date)" >> $GITHUB_ENV
+      - name: Generate Date
         id: date-step
+        run: echo "date=$(date)" >> $GITHUB_ENV
