@@ -19,7 +19,7 @@ jobs:
         id: matrix-arrays
         with: 
           script: |
-            const os = context.payload.inputs['os'].split(',');
+            const os = inputs['os'].split(',');
             const nodeVersion = context.payload.inputs['node-version'].split(',');
             return { os, 'node-version': nodeVersion };
           result-encoding: json
