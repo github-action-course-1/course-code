@@ -17,13 +17,21 @@ jobs:
             run: echo '${{toJSON(steps.cache-dependencies.outputs)}}'    
           - name: install dependencies
             run: npm install
-          - name: upload artifact
+          - name: upload code coverage report
             uses: actions/upload-artifact@v3
             if: always()
             with:
               name: artifact
               path: code-coverage
               retention-days: 30
+          - name: download code coverage report 
+            uses: actions/download-artifact@v3
+            with:
+              name: code-coverage
+              path: code-coverage-report
+          - run: ls -a
+          - run: ls -a
+            working-directory: code-coverage-report
           - name: Use axios
             uses: actions/github-script@v6  
             with: 
