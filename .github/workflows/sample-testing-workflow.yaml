@@ -1,0 +1,71 @@
+name: Trigger tesing workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      customerId:
+        description: 'Customer ID'
+        required: true
+      jpowerId:
+        description: 'JPower ID'
+        required: true
+      realmId:
+        description: 'Realm ID'
+        required: true
+      realmName:
+        description: 'Realm Name'
+        required: true
+      geography:
+        description: 'Geography'
+        required: true
+      size:
+        description: 'Size'
+        required: true
+      costCenter:
+        description: 'Cost Center'
+        required: true
+      envType:
+        description: 'Environment Type'
+        required: true
+      productGroup:
+        description: 'Product Group'
+        required: true
+      entitlements:
+        description: 'Entitlements'
+        required: true
+      costCenterId:
+        description: 'Cost Center ID'
+        required: true
+      team:
+        description: 'Team'
+        required: true
+
+jobs:
+  trigger_workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Print Inputs Workflow
+        run: |
+          curl -L \
+            -X POST \
+            -H "Accept: application/vnd.github.v3+json" \
+            -H "Authorization: Bearer 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" \
+            -H "Content-Type: application/json" \
+            https://api.github.com/repos/github-action-course-1/course-code/dispatches \
+            -d '{
+                  "event_type": "aep-inputs",
+                  "client_payload": {
+                    "customerId": "${{ github.event.inputs.customerId }}",
+                    "jpowerId": "${{ github.event.inputs.jpowerId }}",
+                    "realmId": "${{ github.event.inputs.realmId }}",
+                    "realmName": "${{ github.event.inputs.realmName }}",
+                    "geography": "${{ github.event.inputs.geography }}",
+                    "size": "${{ github.event.inputs.size }}",
+                    "costCenter": "${{ github.event.inputs.costCenter }}",
+                    "envType": "${{ github.event.inputs.envType }}",
+                    "productGroup": "${{ github.event.inputs.productGroup }}",
+                    "entitlements": "${{ github.event.inputs.entitlements }}",
+                    "costCenterId": "${{ github.event.inputs.costCenterId }}",
+                    "team": "${{ github.event.inputs.team }}"
+                  }
+                }'
