@@ -1,0 +1,45 @@
+name: docker-container
+on: [workflow_dispatch]
+
+
+jobs: 
+  docker-job:
+    runs-on: ubuntu_latest
+    container:
+        image: node:20.3-alpine3.17
+        # credentials:
+        #     username:
+        #     password:
+        env:
+          API_URL: some.url.com
+        ports: 
+          - 80
+        # volumes:
+        #     - vol_name: /path/in/container
+        #     - /path/to/container
+        #     - /path/in/host:/path/in/container
+    steps:
+        - name: log node and os versions
+          run: |
+            node -v
+            cat /etc/os-release
+        - name: log env
+          run: echo $API_URL
+        - name: create a fille
+          run: echo 'hi' > tmp.txt
+        - name: container in  1 step
+          uses: docker://node:20.3-alpine3.17
+          with: 
+            entrypoint: /usr/local/bin/node
+            args: -p 2+3
+        - name: container in 2 step
+          uses: docker://node:20.3-alpine3.17
+          with: 
+            entrypoint: /usr/local/bin/node
+            args: -v
+        - name: container in 3 step
+          uses: docker://node:20.3-alpine3.17
+          with: 
+            entrypoint: cat
+            args: tmp.txt
+             

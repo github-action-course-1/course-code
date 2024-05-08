@@ -1,0 +1,24 @@
+name: Repository_workflow_dispatch
+
+on:
+  repository_dispatch:
+    types: [aep-inputs]
+
+jobs:
+  extract_inputs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Extract and Print Inputs
+        run: |
+          echo "customerId: ${{ github.event.client_payload.customerId }}" || echo "Failed to read 'customerId'"
+          echo "jpowerId: ${{ github.event.client_payload.jpowerId }}" || echo "Failed to read 'jpowerId'"
+          echo "realmId: ${{ github.event.client_payload.realmId }}" || echo "Failed to read 'realmId'"
+          echo "realmName: ${{ github.event.client_payload.realmName }}" || echo "Failed to read 'realmName'"
+          echo "geography: ${{ github.event.client_payload.geography }}" || echo "Failed to read 'geography'"
+          echo "size: ${{ github.event.client_payload.size }}" || echo "Failed to read 'size'"
+          echo "costCenter: ${{ github.event.client_payload.costCenter }}" || echo "Failed to read 'costCenter'"
+          echo "envType: ${{ github.event.client_payload.envType }}" || echo "Failed to read 'envType'"
+          echo "productGroup: ${{ github.event.client_payload.productGroup }}" || echo "Failed to read 'productGroup'"
+          echo "entitlements: ${{ github.event.client_payload.entitlements }}" || echo "Failed to read 'entitlements'"
+          echo "costCenterId: ${{ github.event.client_payload.costCenterId }}" || echo "Failed to read 'costCenterId'"
+          echo "team: ${{ github.event.client_payload.team }}" || echo "Failed to read 'team'"
