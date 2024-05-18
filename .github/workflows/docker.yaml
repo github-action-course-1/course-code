@@ -42,4 +42,10 @@ jobs:
           with: 
             entrypoint: cat
             args: tmp.txt
+        - name: run bash scripts
+          uses: docker://node:20.3-alpine3.17
+          with: 
+            entrypoint: ./script.sh
+            args: "Some string"
+        
              
